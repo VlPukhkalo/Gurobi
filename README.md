@@ -11,7 +11,7 @@ The main function is `GurobiOptimization [c, m, b, l, dom, directory]` with:
 - `dom` takes the elements of x to be in the domain, either Reals or Integers
 - `directory` the project directory
 
-You can also add multiple or non-linear objective function. Note that this changes the structure of the input (refer to examples).
+You can also add multiple or non-linear objective function. Note that this changes the structure of the input (refer to [examples](https://github.com/VlPukhkalo/Gurobi/tree/main/Examples)).
 
 In addition, the package includes the following functions:
 - `createLPfile [c, m, b, l, dom, directory]` will create a model .lp file in the specified directory
@@ -51,4 +51,4 @@ You can also use the following:
 ## Related links
 [This](https://github.com/ahrvoje/numerics/blob/master/strtod/StringToDouble.wl) tool was used to processing Hungarian number notation. 
 
-For more information refer to examples and [documentation](https://www.gurobi.com/documentation/9.1/). 
+For more information refer to [examples](https://github.com/VlPukhkalo/Gurobi/tree/main/Examples) and [documentation](https://www.gurobi.com/documentation/9.1/). 
