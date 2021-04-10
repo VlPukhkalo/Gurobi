@@ -21,7 +21,7 @@ In addition, the package includes the following functions:
 - `GetLastLogging[directory]` will return information about the last run from the [gurobi.log](https://www.gurobi.com/documentation/9.1/refman/logging.html)
 
 ### Options
-Using the main and some additional functions, the some options can be used. 
+Using the main and additional functions, the some options can be used. 
 To control model [parameters](https://www.gurobi.com/documentation/9.1/refman/parameter_descriptions.html), use the following:
 - `ResultFileOpt`
 - `MethodOpt`
