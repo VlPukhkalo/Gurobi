@@ -48,4 +48,6 @@ You can also use the following:
 - `getOFValue` when the value is set to True, the program  return, in addition to the vector of variables, the value of the objective function
 
 ## Related links
+[This](https://github.com/ahrvoje/numerics/blob/master/strtod/StringToDouble.wl) tool was used to processing Hungarian number notation. 
+
 For more information refer to examples and [documentation](https://www.gurobi.com/documentation/9.1/). 
