@@ -47,7 +47,7 @@ forThreeElement[c,m,b][[;;3]]~Join~{{#,\[Infinity]}&/@l,Reals}
 deferror[forFourElement]
 
 
-Clear@inputProcessing 
+Clear@inputProcessing (*\:043e\:0431\:0440\:0430\:0431\:043e\:0442\:043a\:0430 \:043f\:043e\:0434\:0430\:043d\:043d\:044b\:0445 \:0430\:0440\:0433\:0443\:043c\:0435\:043d\:0442\:043e\:0432 \:043a\:0430\:043a \:0432 LinearProgramming*)
 
 inputProcessing[args__/;Length[{args}]==3]:=
 forThreeElement[args]
@@ -75,7 +75,7 @@ deferror[strInner]
 
 Clear@MultiObjOptProc
 Options[MultiObjOptProc]={missionOpt->"Minimize",MultiObjOpt->{PriorityOpt->0,WeightOpt->1,AbsTolOpt->0,RelTolOpt->0}};
-MultiObjOptProc[nof_(*num of OF*),OptionsPattern[]]:=
+MultiObjOptProc[nof_(*\:043a\:043e\:043b-\:0432\:043e \:0446\:0444*),OptionsPattern[]]:=
 Module[{curVal,optNames={PriorityOpt,WeightOpt,AbsTolOpt,RelTolOpt},res={}},
 If[curVal=OptionValue[MultiObjOpt->#];
 AtomQ[curVal],
@@ -150,7 +150,7 @@ StringJoin@@MapIndexed[
 ]
 
 
-Clear@conditions
+Clear@conditions(*\:043e\:0433\:0440\:0430\:043d\:0438\:0447\:0435\:043d\:0438\:044f*)
 conditions[A_,RS_,vars_]:=
 With[
 {signAssoc=<|-1. -> " <= ", 0. -> " = ", 1. -> " >= "|>},
@@ -164,7 +164,7 @@ MapIndexed[
 deferror[conditions]
 
 
-Clear@borders
+Clear@borders(*\:0433\:0440\:0430\:043d\:0438\:0446\:044b*)
 borders[bord_,vars_]:=
 StringJoin[
 	ToString@#[[2,1]]," <= ",#[[1]]," <= ",ToString@#[[2,2]],"\n"]&/@
@@ -172,14 +172,14 @@ StringJoin[
 deferror[borders]
 
 
-Clear@domain
+Clear@domain(*\:0446\:0435\:043b\:044b\:0435 \:043f\:0435\:0440\:0435\:043c\:0435\:043d\:043d\:044b\:0435*)
 domain[dom_,vars_]:=Which[dom===Reals," ",
 dom===Integers,StringJoin@Riffle[vars," "],
 Head[dom]===List,StringJoin@Riffle[Pick[vars,dom,Integers]," "]]
 deferror[domain]
 
 
-Clear@variables 
+Clear@variables (*\:043f\:0435\:0440\:0435\:043c\:0435\:043d\:043d\:044b\:0435*)
 
 variables[OF:{(_?NumberQ)...}]:=Table["x"<>IntegerString[i,10,IntegerLength[Length@OF]],{i,Length@OF}]
 
@@ -219,7 +219,7 @@ MapIndexed[
 		signAssoc[#1[[2,2]]],
 		ToString@#1[[2,1]],"\n"]&,
 qc\[Transpose]]]
-rewriteQC[{}]:=""
+rewriteQC[{},vars_]:=""
 
 
 Clear@rewriteIndicatorCon
@@ -262,6 +262,11 @@ deferror[rewrite]
 Clear@createLPfile
 Options[createLPfile]=Options[rewrite]~Join~{lpNameopt->"model.lp"};
 
+(*createLPfile[gm_/;!invalidInputQ[gm],
+	directory_String,
+	lpName_String:"model.lp",
+	opts:OptionsPattern[]]/;Message[CreateLPFile::invinput]:=Null*)
+
 createLPfile[
 	gm_,
 	directory_String,
@@ -285,6 +290,7 @@ With[
 deferror[createLPfile]
 
 
+(*\:0432\:043d\:0435\:0448\:043d\:044f\:044f*)
 Clear@CreateLPFile
 Options[CreateLPFile]=Options[createLPfile];
 CreateLPFile::invinp="Invalid input";
@@ -293,12 +299,12 @@ CreateLPFile[args__,opts:OptionsPattern[]]:=
 Module[{
 res=createLPfile[
 inputProcessing[Sequence@@Most@{args}],Last@{args},opts]}, 
-If[res===Null,Null,Message[CreateLPFile::invinp]]]
+If[res===Null,Null,Message[CreateLPFile::invinp]]](*\:043d\:0435 \:0442\:043e*)
 
 deferror[CreateLPFile]
 
 
-Clear@setParameter 
+Clear@setParameter (*\:0434\:043e\:0431\:0430\:0432\:043b\:0435\:043d\:0438\:0435 \:043f\:0430\:0440\:0430\:043c\:0435\:0442\:0440\:043e\:0432*)
 Options[setParameter]=
 {ResultFileOpt->"model.sol",
 MethodOpt->"-1",
@@ -335,6 +341,7 @@ TemplateApply[
 sfso]]
 
 
+(*\:0432\:043d\:0435\:0448\:043d\:044f\:044f*)
 Clear@getSolution
 Options[getSolution]=Options[setParameter];
 
@@ -407,6 +414,9 @@ importProcess[x_]:=N@ToExpression@StringToDoubleInt[x]
 deferror[importProcess]
 
 
+importResults::grsnf="No solution can be found that satisfies the constraints.";
+
+
 Clear@importResults
 Options[importResults]:={getOFValue->False};
 
@@ -441,7 +451,19 @@ With[{ngm=Normal@gm},
 	{{_?NumberQ ...}...},
 	{{_?NumberQ,1|-1|0}...},
 	{{_?NumberQ|-\[Infinity],_?NumberQ|\[Infinity]}...},
-	_List|_}] 
+	_List|_}] (*\:0441\:043e\:043e\:0442\:0432\:0435\:0442\:0441\:0442\:0432\:0438\:0435 \:043f\:043e \:0448\:0430\:0431\:043b\:043e\:043d\:0443*)
+(*	(*\:043f\:0440\:043e\:0432\:0435\:0440\:043a\:0430 \:0434\:043b\:0438\:043d*)
+If[d\[Equal]3 (*\:043d\:0435\:0441\:043a\:043e\:043b\:044c\:043a\:043e \:0446\:0444*),
+AllTrue[ngm\[LeftDoubleBracket]1\[RightDoubleBracket],Length@#\[Equal]Length@ngm\[LeftDoubleBracket]4\[RightDoubleBracket]&],
+(*1 \:0446\:0444*)
+Length@ngm\[LeftDoubleBracket]1\[RightDoubleBracket]\[Equal]Length@ngm\[LeftDoubleBracket]4\[RightDoubleBracket]
+], 
+Length@ngm\[LeftDoubleBracket]2\[RightDoubleBracket]\[Equal]Length@ngm\[LeftDoubleBracket]3\[RightDoubleBracket],
+MatchQ[ngm\[LeftDoubleBracket]2\[RightDoubleBracket],{_List ...}],
+If[d\[Equal]3,(*\:043d\:0435\:0441\:043a\:043e\:043b\:044c\:043a\:043e \:0446\:0444*)
+AllTrue[ngm\[LeftDoubleBracket]2\[RightDoubleBracket],Length@#\[Equal]Length@ngm\[LeftDoubleBracket]1,1\[RightDoubleBracket]&],
+(*else*)
+AllTrue[ngm\[LeftDoubleBracket]2\[RightDoubleBracket],Length@#\[Equal]Length@ngm\[LeftDoubleBracket]1\[RightDoubleBracket]&]]*)
 })]
 
 
@@ -463,6 +485,7 @@ With[{
 		Run[setParameter[lpName,spopts]];
 		importResults[directory,OptionValue[ResultFileOpt],getOFValue->OptionValue[getOFValue]]/;
 
+(*\:043f\:0440\:043e\:0432\:0435\:0440\:043a\:0430*)
 (StringMatchQ[lpName,"*.lp"]\[And]
 invalidInputQ[gm]\[And]
 AnyTrue[{"Minimize","Maximize"},#==OptionValue[missionOpt]&]\[And]
